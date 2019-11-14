@@ -1,9 +1,15 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 
-function UserForm({ values, errors, touched }) {
+function UserForm({ values, errors, touched, status }) {
+
+  const [users, setUsers] = useState([]);
+
+  useEffect( () => {
+    status && setUsers( users => [...users, status])
+  }, [status])
   
   return (  
     <div >
@@ -24,6 +30,15 @@ function UserForm({ values, errors, touched }) {
           {touched.terms && errors.terms && (<p>Can't finish if you don't accept them there terms.</p>)}
         </label>
         <button>Submit</button>
+
+        {users.map( user => (
+          <ul>
+            <li>username: {user.username}</li>
+            <li>email: {user.email}</li>
+            <li>password: {user.password}</li>
+            {/* <li>terms: {user.terms}</li> */}
+          </ul>
+        ))}
       </Form>
     </div>
   );
@@ -42,7 +57,7 @@ const FormikUserForm = withFormik( {
     username: Yup.string().required(),
     email: Yup.string().required(),
     password: Yup.string().required(),
-    terms: Yup.boolean(true).required(),
+    terms: Yup.boolean([true]).required(),
   }),
   handleSubmit(values, { setStatus, resetForm} ) {
     axios
