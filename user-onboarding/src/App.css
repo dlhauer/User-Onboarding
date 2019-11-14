@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .App-logo {
@@ -19,4 +22,36 @@
 
 .App-link {
   color: #09d3ac;
+}
+
+.user-form {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+}
+
+.input {
+  font-size: 1.6rem;
+  margin-bottom: 15px;
+  background-color: whitesmoke;
+  border: 1px solid dodgerblue;
+  border-radius: 5px;
+  height: 35px;
+  padding-left: 10px;
+}
+
+label {
+  font-size: 1.6rem;
+  display: flex;
+  align-items: center;
+}
+
+button {
+  width: 150px;
+  padding: 10px;
+  font-size: 2rem;
+  font-weight: bold;
+  background-color: dodgerblue;
+  color: white;
+  border-radius: 10px;
 }
