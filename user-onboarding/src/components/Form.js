@@ -1,6 +1,7 @@
 import React from 'react';
 import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
+import axios from 'axios';
 
 function UserForm({ values, errors, touched }) {
   
@@ -43,7 +44,16 @@ const FormikUserForm = withFormik( {
     password: Yup.string().required(),
     terms: Yup.boolean(true).required(),
   }),
-
+  handleSubmit(values, { setStatus, resetForm} ) {
+    axios
+      .post('https://reqres.in/api/users', values)
+      .then( response => {
+        setStatus(response.data)
+        console.log(response);
+      })
+      .catch(err => console.log(err.response))
+      .finally(resetForm())
+  }
 })(UserForm);
 
 export default FormikUserForm;
