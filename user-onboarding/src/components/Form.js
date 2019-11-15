@@ -19,14 +19,14 @@ function UserForm({ values, errors, touched, status }) {
         {touched.username && errors.username && (<p>Whoa, whoa, whoa, you can't just go using my website without a username, pal!</p>)}
 
         <Field className='input' type='email' name='email' placeholder='email'/>
-        {touched.email && errors.email && (<p>Nah, nah, you best get an email in there real quick, brah.</p>)}
+        {touched.email && errors.email && (<p>Nah, nah, you best get an email in there real quick, brah.</p>) || values.email === 'waffle@syrup.com' && (<p>Nope, that email is already taken</p>)}
 
         <Field className='input' type='password' name='password' placeholder='password'/>
         {touched.password && errors.password && (<p>Fine, don't enter a password. You'll never be able to access my awesome website ever again!</p>)}
 
         <label>
-          <Field className='input' type='checkbox' name='terms' checked={values.terms}/>
-          I haven't read the <a href='https://youtu.be/dQw4w9WgXcQ'> terms of service</a>, but I agree to them anyway.
+          <Field className='check-box' type='checkbox' name='terms' checked={values.terms}/>
+          <p>I haven't read the <a href='https://youtu.be/Qw4w9WgXcQ'> terms of service</a>, but I agree to them anyway.</p>
           {touched.terms && errors.terms && (<p>Can't finish if you don't accept them there terms.</p>)}
         </label>
         <button>Submit</button>
